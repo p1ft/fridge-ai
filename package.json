@@ -1,0 +1,22 @@
+{
+  "name": "fridgeops",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Photo-to-inventory meal planning with validated AI recipes",
+  "workspaces": [
+    "hosted"
+  ],
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace=fridgeops-hosted",
+    "test": "npm test --workspace=fridgeops-hosted",
+    "check": "node scripts/check.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}

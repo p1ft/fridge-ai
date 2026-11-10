@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f4f2ea" />
+    <meta
+      name="description"
+      content="FridgeOps: make something good with the ingredients you already have."
+    />
+    <title>FridgeOps — What’s for dinner?</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="FridgeOps home"
+        ><span class="brand-icon">◫</span> FridgeOps</a
+      ><span class="top-note">Good food starts with what you already have</span
+      ><button id="logout" class="text-button hidden" type="button">
+        Log out
+      </button>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">YOUR SMART KITCHEN ASSISTANT</p>
+        <h1>Open your fridge.<br /><em>Dinner is in there.</em></h1>
+        <p>
+          Add ingredients manually or snap a photo. Review your list, then get
+          up to three meal ideas with nutrition estimates.
+        </p>
+      </section>
+      <div id="notice" class="notice hidden" role="status"></div>
+      <section id="login-panel" class="card login-card hidden">
+        <p class="step">DEMO ACCESS</p>
+        <h2>Ready to cook?</h2>
+        <p>
+          Enter your access code. Your ingredient lists and recipes are saved
+          for this browser.
+        </p>
+        <form id="login-form">
+          <label for="access-code">Access code</label>
+          <div class="inline">
+            <input
+              id="access-code"
+              type="password"
+              autocomplete="current-password"
+              required
+            /><button class="primary" type="submit">Log in</button>
+          </div>
+        </form>
+      </section>
+      <div id="workspace" class="workspace hidden">
+        <aside class="sidebar card">
+          <div class="section-head">
+            <div>
+              <p class="step">YOUR KITCHEN</p>
+              <h2>Sessions</h2>
+            </div>
+            <button
+              id="new-session"
+              class="icon-button"
+              type="button"
+              aria-label="New session"
+            >
+              ＋
+            </button>
+          </div>
+          <div id="sessions-list" class="sessions-list"></div>
+          <p class="aside-hint">
+            Each session saves your confirmed ingredients and latest recipes.
+          </p>
+        </aside>
+        <div class="main-column">
+          <section class="card" id="inventory-card">
+            <div class="section-head">
+              <div>
+                <p class="step">STEP 01 · INGREDIENTS</p>
+                <h2>What’s in your fridge?</h2>
+              </div>
+              <span class="pill">Photo or manual</span>
+            </div>
+            <label class="upload-zone" for="photos"
+              ><span class="upload-symbol">▧</span
+              ><strong>Add a photo of your ingredients</strong
+              ><span>Up to 3 images · JPEG, PNG, or WebP</span
+              ><input
+                id="photos"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+            /></label>
+            <div id="photo-count" class="subtle"></div>
+            <div class="actions">
+              <button id="analyze" class="secondary" type="button">
+                Recognize photo</button
+              ><span class="subtle"
+                >Photos are sent to Google Gemini for recognition and are not
+                stored in the database.</span
+              >
+            </div>
+            <div class="inventory-head">
+              <h3>Review your list</h3>
+              <button id="add-item" class="text-button" type="button">
+                ＋ Add ingredient
+              </button>
+            </div>
+            <div id="inventory-rows" class="inventory-rows"></div>
+            <div class="actions">
+              <button id="save-inventory" class="primary" type="button">
+                Save ingredients</button
+              ><span id="saved-label" class="subtle"></span>
+            </div>
+          </section>
+          <section class="card" id="recipes-card">
+            <p class="step">STEP 02 · IDEAS</p>
+            <h2>Make a meal plan</h2>
+            <div class="preferences">
+              <label
+                >Servings<input
+                  id="servings"
+                  type="number"
+                  min="1"
+                  max="8"
+                  value="2" /></label
+              ><label
+                >What sounds good?<input
+                  id="wish"
+                  type="text"
+                  maxlength="250"
+                  placeholder="For example, a quick breakfast" /></label
+              ><label
+                >Leave out<input
+                  id="exclusions"
+                  type="text"
+                  maxlength="200"
+                  placeholder="For example, onions"
+              /></label>
+            </div>
+            <button id="generate" class="primary" type="button">
+              Find recipes
+            </button>
+            <p id="recipe-warning" class="subtle"></p>
+            <div id="recipe-results" class="recipe-results"></div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <span>FridgeOps</span
+      ><span
+        >Nutrition is an estimate. Check ingredients, allergens, and that food
+        is fully cooked.</span
+      >
+    </footer>
+  </body>
+</html>
